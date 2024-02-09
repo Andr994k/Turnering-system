@@ -12,21 +12,16 @@ class modalstate(rx.State):
         self.show = not (self.show)
 
 class State(rx.State):
+
     """The app state."""
-    tournaments = {
+    tournaments: dict[str, str] = {
         "Duck Squad Glacial Showdown #3": "Format\nSingle Elimination\nAll Matches excl. Grand Finals are Bo3\nGrand Finals are Bo5",
         "Jay3's Community Clash": "Format\nDouble Elimination Bracket:\nSix invited teams and two from the Qualifier\nAll matches (excl. Grand Finals) are Ft3\nGrand Finals are Ft4"
     }
-    def update_tournament(self, form_data: dict):
-        self.tournaments.update({form_data["tournament_name"]: form_data["tournament_description"]})
 
     pass
 
-
-
-
-
-
+state = State()
 
 class FormState(rx.State):
     form_data: dict = {}
@@ -34,11 +29,8 @@ class FormState(rx.State):
     def handle_submit(self, form_data: dict):
         """Handle the form submit."""
         self.form_data.update(form_data)
-        State.tournaments.update({form_data["tournament_name"]: form_data["tournament_description"]})
+        state.tournaments.update({form_data["tournament_name"]: form_data["tournament_description"]})
         add_tournament_endpoints()
-        
-        print(State.tournaments.items())
-
 
 #Navigation buttons
 navbuttons = {
@@ -49,22 +41,18 @@ navbuttons = {
     "Login": "/login",
 }
 
-
-
 #Global tournament title style
 tournament_title_style = {
     "font_size": "4em",
     "text_align": "center",
 }
 
-
-
 #Componennts class
 class Components():
     """The app components."""
     def navbutton(text, reference) -> rx.Component:
         return rx.button(text, margin_right="1em", on_click=rx.redirect(reference))
-    def tournament_box(name, description) -> rx.Component:
+    def tournament_box(name: str, description: str) -> rx.Component:
         endpoint = name.replace("#", "")
         endpoint = endpoint.replace("'", "")
         endpoint = endpoint.replace(" ", "_")
@@ -104,27 +92,27 @@ def home() -> rx.Component:
     navbar()
     )
 
+
+
 def add_tournament_endpoints():
-    for key, value in State.tournaments.items():
+    for key, value in state.tournaments.items():
         endpoint = key.replace("#", "")
         endpoint = endpoint.replace("'", "")
         endpoint = endpoint.replace(" ", "_")
-        #print(endpoint)
+        print(endpoint)
         app.add_page(tournament_layout(key, value), route=f"tournaments/{endpoint}")
 
-def tournament_layout(name, description):
+def tournament_layout(name: str, description: str) -> rx.Component:
     return rx.fragment(
         rx.heading(name),
-        rx.text(description)
-        )
+        rx.text(description),
+    )
     
 
 def view_all_tournaments() -> rx.Component:
-    #print(State.tournaments.items())
     return rx.vstack(
         rx.heading("All tournaments", style={"font_size": "4em"}),
-        #rx.vstack(*[Components.tournament_box(key, value) for key, value in State.tournaments.items()]),
-        rx.foreach(State.tournaments, lambda tournament: rx.heading(tournament)),
+        rx.foreach(state.tournaments, lambda tournament: Components.tournament_box(tournament[0], tournament[1])),
         navbar(),
         padding_top="10%"
     )
@@ -144,7 +132,6 @@ def form_example():
                 rx.button("Submit", type_="submit"),
             ),
             on_submit=FormState.handle_submit,
-            on_submit=State.update_tournament,
 
             reset_on_submit=True,
         ),

@@ -13,6 +13,19 @@ import NextHead from "next/head"
 
 
 
+export function Button_5cbb2952409d1e5ed6e42602daa56ec7 () {
+  const [ colorMode, toggleColorMode ] = useContext(ColorModeContext)
+  const [addEvents, connectError] = useContext(EventLoopContext);
+
+  const on_click_9922dd3e837b9e087c86a2522c2c93f8 = useCallback(toggleColorMode, [addEvents, Event, colorMode, toggleColorMode])
+
+  return (
+    <Button onClick={on_click_9922dd3e837b9e087c86a2522c2c93f8} sx={{"float": "right"}}>
+  <Fragment_c4944d8b5ece4892844e987a2ddfe4ae/>
+</Button>
+  )
+}
+
 export function Link_891a85760a2d39c9b3d97bd9f86af37d () {
   const [ colorMode, toggleColorMode ] = useContext(ColorModeContext)
 
@@ -40,19 +53,6 @@ export function Fragment_c4944d8b5ece4892844e987a2ddfe4ae () {
 </Fragment>
 )}
 </Fragment>
-  )
-}
-
-export function Button_5cbb2952409d1e5ed6e42602daa56ec7 () {
-  const [ colorMode, toggleColorMode ] = useContext(ColorModeContext)
-  const [addEvents, connectError] = useContext(EventLoopContext);
-
-  const on_click_9922dd3e837b9e087c86a2522c2c93f8 = useCallback(toggleColorMode, [addEvents, Event, colorMode, toggleColorMode])
-
-  return (
-    <Button onClick={on_click_9922dd3e837b9e087c86a2522c2c93f8} sx={{"float": "right"}}>
-  <Fragment_c4944d8b5ece4892844e987a2ddfe4ae/>
-</Button>
   )
 }
 

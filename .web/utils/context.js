@@ -1,16 +1,16 @@
 import { createContext, useContext, useMemo, useReducer, useState } from "react"
 import { applyDelta, Event, hydrateClientStorage, useEventLoop, refs } from "/utils/state.js"
 
-export const initialState = {"state": {"is_hydrated": false, "router": {"session": {"client_token": "", "client_ip": "", "session_id": ""}, "headers": {"host": "", "origin": "", "upgrade": "", "connection": "", "pragma": "", "cache_control": "", "user_agent": "", "sec_websocket_version": "", "sec_websocket_key": "", "sec_websocket_extensions": "", "accept_encoding": "", "accept_language": ""}, "page": {"host": "", "path": "", "raw_path": "", "full_path": "", "full_raw_path": "", "params": {}}}}, "state.form_state": {"form_data": {}}, "state.state": {}, "state.modalstate": {"show": false}}
+export const initialState = {"state": {"is_hydrated": false, "router": {"session": {"client_token": "", "client_ip": "", "session_id": ""}, "headers": {"host": "", "origin": "", "upgrade": "", "connection": "", "pragma": "", "cache_control": "", "user_agent": "", "sec_websocket_version": "", "sec_websocket_key": "", "sec_websocket_extensions": "", "accept_encoding": "", "accept_language": ""}, "page": {"host": "", "path": "", "raw_path": "", "full_path": "", "full_raw_path": "", "params": {}}}}, "state.modalstate": {"show": false}, "state.state": {"tournaments": {"Duck Squad Glacial Showdown #3": "Format\nSingle Elimination\nAll Matches excl. Grand Finals are Bo3\nGrand Finals are Bo5", "Jay3's Community Clash": "Format\nDouble Elimination Bracket:\nSix invited teams and two from the Qualifier\nAll matches (excl. Grand Finals) are Ft3\nGrand Finals are Ft4"}}, "state.form_state": {"form_data": {}}}
 
 export const ColorModeContext = createContext(null);
 export const UploadFilesContext = createContext(null);
 export const DispatchContext = createContext(null);
 export const StateContexts = {
   state: createContext(null),
-  state__form_state: createContext(null),
-  state__state: createContext(null),
   state__modalstate: createContext(null),
+  state__state: createContext(null),
+  state__form_state: createContext(null),
 }
 export const EventLoopContext = createContext(null);
 export const clientStorage = {"cookies": {}, "local_storage": {}}
@@ -54,29 +54,29 @@ export function EventLoopProvider({ children }) {
 
 export function StateProvider({ children }) {
   const [state, dispatch_state] = useReducer(applyDelta, initialState["state"])
-  const [state__form_state, dispatch_state__form_state] = useReducer(applyDelta, initialState["state.form_state"])
-  const [state__state, dispatch_state__state] = useReducer(applyDelta, initialState["state.state"])
   const [state__modalstate, dispatch_state__modalstate] = useReducer(applyDelta, initialState["state.modalstate"])
+  const [state__state, dispatch_state__state] = useReducer(applyDelta, initialState["state.state"])
+  const [state__form_state, dispatch_state__form_state] = useReducer(applyDelta, initialState["state.form_state"])
   const dispatchers = useMemo(() => {
     return {
       "state": dispatch_state,
-      "state.form_state": dispatch_state__form_state,
-      "state.state": dispatch_state__state,
       "state.modalstate": dispatch_state__modalstate,
+      "state.state": dispatch_state__state,
+      "state.form_state": dispatch_state__form_state,
     }
   }, [])
 
   return (
     <StateContexts.state.Provider value={ state }>
-    <StateContexts.state__form_state.Provider value={ state__form_state }>
-    <StateContexts.state__state.Provider value={ state__state }>
     <StateContexts.state__modalstate.Provider value={ state__modalstate }>
+    <StateContexts.state__state.Provider value={ state__state }>
+    <StateContexts.state__form_state.Provider value={ state__form_state }>
       <DispatchContext.Provider value={dispatchers}>
         {children}
       </DispatchContext.Provider>
-    </StateContexts.state__modalstate.Provider>
-    </StateContexts.state__state.Provider>
     </StateContexts.state__form_state.Provider>
+    </StateContexts.state__state.Provider>
+    </StateContexts.state__modalstate.Provider>
     </StateContexts.state.Provider>
   )
 }

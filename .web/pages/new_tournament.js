@@ -11,19 +11,7 @@ import NextHead from "next/head"
 
 
 
-export function Text_1080eb91387b56c958b1db989df13fcd () {
-  const state__form_state = useContext(StateContexts.state__form_state)
-
-
-  return (
-    <Text>
-  {JSON.stringify(state__form_state.form_data)}
-</Text>
-  )
-}
-
 export function Box_c776e475260200ac3b24243da022ddf5 () {
-  const [addEvents, connectError] = useContext(EventLoopContext);
   
     const handleSubmit_4038683695e0e6eb8e2a554ff648ff40 = useCallback((ev) => {
         const $form = ev.target
@@ -37,6 +25,7 @@ export function Box_c776e475260200ac3b24243da022ddf5 () {
         }
     })
     
+  const [addEvents, connectError] = useContext(EventLoopContext);
 
 
   return (
@@ -49,6 +38,17 @@ export function Box_c776e475260200ac3b24243da022ddf5 () {
 </Button>
 </VStack>
 </Box>
+  )
+}
+
+export function Text_1080eb91387b56c958b1db989df13fcd () {
+  const state__form_state = useContext(StateContexts.state__form_state)
+
+
+  return (
+    <Text>
+  {JSON.stringify(state__form_state.form_data)}
+</Text>
   )
 }
 
