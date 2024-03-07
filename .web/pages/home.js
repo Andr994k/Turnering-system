@@ -2,57 +2,114 @@
 
 
 import { Fragment, useCallback, useContext } from "react"
-import { Button_5a6a2fd14d24c4fba9960d1c6d094b39, Button_8e6b9372ec9e1f0f03143823a71d5bfd, Button_a6cff2a2bd7ac8237d5de6f9a3cecd2d, Button_da2220b4ef94ac612095b7ea7962e584, Button_ea384a83f78c758c5f30e626eb3337b1, Fragment_fd0e7cb8f9fb4669a6805377d925fba0 } from "/utils/stateful_components"
-import { Box, Button, Code, Heading, HStack, Link, VStack } from "@chakra-ui/react"
 import { ColorModeContext, EventLoopContext } from "/utils/context"
-import { Event, isTrue } from "/utils/state"
-import { MoonIcon, SunIcon } from "@chakra-ui/icons"
-import "focus-visible/dist/focus-visible"
+import { Event, getBackendURL, isTrue } from "/utils/state"
+import { Box as RadixThemesBox, Button as RadixThemesButton, Code as RadixThemesCode, Dialog as RadixThemesDialog, Flex as RadixThemesFlex, Heading as RadixThemesHeading, Link as RadixThemesLink, Text as RadixThemesText } from "@radix-ui/themes"
+import env from "/env.json"
 import NextLink from "next/link"
 import NextHead from "next/head"
 
 
 
-export function Button_5cbb2952409d1e5ed6e42602daa56ec7 () {
-  const [ colorMode, toggleColorMode ] = useContext(ColorModeContext)
+export function Button_2fb1f78428e510d85deeae241bf0a449 () {
   const [addEvents, connectError] = useContext(EventLoopContext);
 
-  const on_click_9922dd3e837b9e087c86a2522c2c93f8 = useCallback(toggleColorMode, [addEvents, Event, colorMode, toggleColorMode])
+  const on_click_3378da63d1beed448968148435c684ca = useCallback((_e) => addEvents([Event("_redirect", {path:`/signup`,external:false})], (_e), {}), [addEvents, Event])
 
   return (
-    <Button onClick={on_click_9922dd3e837b9e087c86a2522c2c93f8} sx={{"float": "right"}}>
-  <Fragment_c4944d8b5ece4892844e987a2ddfe4ae/>
-</Button>
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_3378da63d1beed448968148435c684ca}>
+  {`Signup`}
+</RadixThemesButton>
   )
 }
 
-export function Link_891a85760a2d39c9b3d97bd9f86af37d () {
+export function Link_bbbd66e47c4c25b7d74b3884d38ce6e6 () {
   const [ colorMode, toggleColorMode ] = useContext(ColorModeContext)
 
 
   return (
-    <Link as={NextLink} href={`https://reflex.dev/docs/getting-started/introduction`} sx={{"border": "0.1em solid", "padding": "0.5em", "borderRadius": "0.5em", "_hover": {"color": isTrue((colorMode === "light")) ? `rgb(107,99,246)` : `rgb(179, 175, 0)`}}}>
+    <RadixThemesLink asChild={true} css={{"border": "0.1em solid", "padding": "0.5em", "borderRadius": "0.5em", "&:hover": {"color": isTrue(((colorMode) === ("light"))) ? `rgb(107,99,246)` : `rgb(179, 175, 0)`}}}>
+  <NextLink href={`https://reflex.dev/docs/getting-started/introduction`} passHref={true}>
   {`Check out our docsfjdsih!`}
-</Link>
+</NextLink>
+</RadixThemesLink>
   )
 }
 
-export function Fragment_c4944d8b5ece4892844e987a2ddfe4ae () {
-  const [ colorMode, toggleColorMode ] = useContext(ColorModeContext)
+export function Button_3ee5e4ea8589a9c943009e7404eb53be () {
+  const [addEvents, connectError] = useContext(EventLoopContext);
+
+  const on_click_2fd35f581ac6d709ce2966c88c7c5818 = useCallback((_e) => addEvents([Event("_redirect", {path:`/login`,external:false})], (_e), {}), [addEvents, Event])
+
+  return (
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_2fd35f581ac6d709ce2966c88c7c5818}>
+  {`Login`}
+</RadixThemesButton>
+  )
+}
+
+export function Button_89f5528bc8ce3b71e3908f3b2100bd35 () {
+  const [addEvents, connectError] = useContext(EventLoopContext);
+
+  const on_click_0efd6f4d7da6130e9bdf25921161eece = useCallback((_e) => addEvents([Event("_redirect", {path:`/tournaments`,external:false})], (_e), {}), [addEvents, Event])
+
+  return (
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_0efd6f4d7da6130e9bdf25921161eece}>
+  {`View all tournaments`}
+</RadixThemesButton>
+  )
+}
+
+export function Button_2d7913e82e1ffb5e7e8eca7e779994fc () {
+  const [addEvents, connectError] = useContext(EventLoopContext);
+
+  const on_click_2d7ba5ec9d6c37a8649083c9ea463caa = useCallback((_e) => addEvents([Event("_redirect", {path:`/new_tournament`,external:false})], (_e), {}), [addEvents, Event])
+
+  return (
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_2d7ba5ec9d6c37a8649083c9ea463caa}>
+  {`New tournament`}
+</RadixThemesButton>
+  )
+}
+
+export function Fragment_1762bb90abdb81b879b2a22edbbe01a1 () {
+  const [addEvents, connectError] = useContext(EventLoopContext);
 
 
   return (
     <Fragment>
-  {isTrue((colorMode === "light")) ? (
+  {isTrue(connectError !== null) ? (
   <Fragment>
-  <SunIcon/>
+  <RadixThemesDialog.Root open={connectError !== null}>
+  <RadixThemesDialog.Content>
+  <RadixThemesDialog.Title>
+  {`Connection Error`}
+</RadixThemesDialog.Title>
+  <RadixThemesText as={`p`}>
+  {`Cannot connect to server: `}
+  {(connectError !== null) ? connectError.message : ''}
+  {`. Check if server is reachable at `}
+  {getBackendURL(env.EVENT).href}
+</RadixThemesText>
+</RadixThemesDialog.Content>
+</RadixThemesDialog.Root>
 </Fragment>
 ) : (
-  <Fragment>
-  <MoonIcon/>
-</Fragment>
+  <Fragment/>
 )}
 </Fragment>
+  )
+}
+
+export function Button_46512e4a6570d0aa14a0f71e6767d68f () {
+  const [addEvents, connectError] = useContext(EventLoopContext);
+
+  const on_click_afcacc0bf09b8789a015e9a61b09b8de = useCallback((_e) => addEvents([Event("_redirect", {path:`/home`,external:false})], (_e), {}), [addEvents, Event])
+
+  return (
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_afcacc0bf09b8789a015e9a61b09b8de}>
+  {`Frontpage`}
+</RadixThemesButton>
   )
 }
 
@@ -60,33 +117,32 @@ export default function Component() {
 
   return (
     <Fragment>
-  <Fragment_fd0e7cb8f9fb4669a6805377d925fba0/>
+  <Fragment_1762bb90abdb81b879b2a22edbbe01a1/>
   <Fragment>
-  <Button_5cbb2952409d1e5ed6e42602daa56ec7/>
-  <VStack spacing={`2.5em`} sx={{"fontSize": "2em", "paddingTop": "10%"}}>
-  <Heading sx={{"fontSize": "2em"}}>
+  <RadixThemesFlex align={`start`} css={{"fontSize": "2em", "paddingTop": "10%"}} direction={`column`} gap={`2`}>
+  <RadixThemesHeading css={{"fontSize": "2em"}}>
   {`Welcome to Reflex!`}
-</Heading>
-  <Box>
+</RadixThemesHeading>
+  <RadixThemesBox>
   {`Get started by editing `}
-  <Code sx={{"fontSize": "1em"}}>
+  <RadixThemesCode css={{"fontSize": "1em"}}>
   {`Turnering_system/Turnering_system.py`}
-</Code>
-</Box>
-  <Link_891a85760a2d39c9b3d97bd9f86af37d/>
-</VStack>
-  <VStack sx={{"bg": "#E6E6EA", "position": "fixed", "width": "100%", "top": "0px", "zIndex": "5"}}>
-  <Heading>
+</RadixThemesCode>
+</RadixThemesBox>
+  <Link_bbbd66e47c4c25b7d74b3884d38ce6e6/>
+</RadixThemesFlex>
+  <RadixThemesFlex align={`start`} css={{"background": "#E6E6EA", "position": "fixed", "width": "100%", "top": "0px", "zIndex": "5"}} direction={`column`} gap={`2`}>
+  <RadixThemesHeading>
   {`Tournament manager`}
-</Heading>
-  <HStack>
-  <Button_ea384a83f78c758c5f30e626eb3337b1/>
-  <Button_8e6b9372ec9e1f0f03143823a71d5bfd/>
-  <Button_da2220b4ef94ac612095b7ea7962e584/>
-  <Button_a6cff2a2bd7ac8237d5de6f9a3cecd2d/>
-  <Button_5a6a2fd14d24c4fba9960d1c6d094b39/>
-</HStack>
-</VStack>
+</RadixThemesHeading>
+  <RadixThemesFlex align={`start`} direction={`row`} gap={`2`}>
+  <Button_46512e4a6570d0aa14a0f71e6767d68f/>
+  <Button_2d7913e82e1ffb5e7e8eca7e779994fc/>
+  <Button_89f5528bc8ce3b71e3908f3b2100bd35/>
+  <Button_2fb1f78428e510d85deeae241bf0a449/>
+  <Button_3ee5e4ea8589a9c943009e7404eb53be/>
+</RadixThemesFlex>
+</RadixThemesFlex>
 </Fragment>
   <NextHead>
   <title>
