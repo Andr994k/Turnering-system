@@ -15,8 +15,73 @@ import NextHead from "next/head"
 
 
 
-export function Flex_0b82d784f96d219da4c312792f81ab4f () {
+export function Button_2d7913e82e1ffb5e7e8eca7e779994fc () {
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_2d7ba5ec9d6c37a8649083c9ea463caa = useCallback((_e) => addEvents([Event("_redirect", {path:`/new_tournament`,external:false})], (_e), {}), [addEvents, Event])
+
+
+  return (
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_2d7ba5ec9d6c37a8649083c9ea463caa}>
+  {`New tournament`}
+</RadixThemesButton>
+  )
+}
+
+export function Button_2fb1f78428e510d85deeae241bf0a449 () {
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_3378da63d1beed448968148435c684ca = useCallback((_e) => addEvents([Event("_redirect", {path:`/signup`,external:false})], (_e), {}), [addEvents, Event])
+
+
+  return (
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_3378da63d1beed448968148435c684ca}>
+  {`Signup`}
+</RadixThemesButton>
+  )
+}
+
+export function Button_3ee5e4ea8589a9c943009e7404eb53be () {
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_2fd35f581ac6d709ce2966c88c7c5818 = useCallback((_e) => addEvents([Event("_redirect", {path:`/login`,external:false})], (_e), {}), [addEvents, Event])
+
+
+  return (
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_2fd35f581ac6d709ce2966c88c7c5818}>
+  {`Login`}
+</RadixThemesButton>
+  )
+}
+
+export function Root_366507b1203ed8dab534fc1bd258bafc () {
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+  
+    const handleSubmit_468fd3ccbe64a99a6e686fa228077f7d = useCallback((ev) => {
+        const $form = ev.target
+        ev.preventDefault()
+        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...{}}
+
+        addEvents([Event("state.dynamic_form_state.handle_submit", {form_data:form_data})])
+
+        if (true) {
+            $form.reset()
+        }
+    })
+    
+
+  return (
+    <RadixFormRoot className={`Root`} onSubmit={handleSubmit_468fd3ccbe64a99a6e686fa228077f7d}>
+  <Flex_ee421d6fd901d261684e4b70c6ab249e/>
+</RadixFormRoot>
+  )
+}
+
+export function Flex_ee421d6fd901d261684e4b70c6ab249e () {
   const state__dynamic_form_state = useContext(StateContexts.state__dynamic_form_state)
+
 
 
   return (
@@ -31,8 +96,22 @@ export function Flex_0b82d784f96d219da4c312792f81ab4f () {
   )
 }
 
+export function Button_46512e4a6570d0aa14a0f71e6767d68f () {
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_afcacc0bf09b8789a015e9a61b09b8de = useCallback((_e) => addEvents([Event("_redirect", {path:`/home`,external:false})], (_e), {}), [addEvents, Event])
+
+
+  return (
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_afcacc0bf09b8789a015e9a61b09b8de}>
+  {`Frontpage`}
+</RadixThemesButton>
+  )
+}
+
 export function Text_80d17859ef585e0e1f3ba6e3eaa1c55c () {
   const state__dynamic_form_state = useContext(StateContexts.state__dynamic_form_state)
+
 
 
   return (
@@ -42,33 +121,20 @@ export function Text_80d17859ef585e0e1f3ba6e3eaa1c55c () {
   )
 }
 
-export function Button_2fb1f78428e510d85deeae241bf0a449 () {
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
+const pulse = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+`
 
-  const on_click_3378da63d1beed448968148435c684ca = useCallback((_e) => addEvents([Event("_redirect", {path:`/signup`,external:false})], (_e), {}), [addEvents, Event])
-
-  return (
-    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_3378da63d1beed448968148435c684ca}>
-  {`Signup`}
-</RadixThemesButton>
-  )
-}
-
-export function Button_2d7913e82e1ffb5e7e8eca7e779994fc () {
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_click_2d7ba5ec9d6c37a8649083c9ea463caa = useCallback((_e) => addEvents([Event("_redirect", {path:`/new_tournament`,external:false})], (_e), {}), [addEvents, Event])
-
-  return (
-    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_2d7ba5ec9d6c37a8649083c9ea463caa}>
-  {`New tournament`}
-</RadixThemesButton>
-  )
-}
 
 export function Fragment_e9a05c105aa9215aeba52aeec8fe2e76 () {
   const state = useContext(StateContexts.state)
   const [addEvents, connectErrors] = useContext(EventLoopContext);
+
 
 
   return (
@@ -86,85 +152,9 @@ export function Fragment_e9a05c105aa9215aeba52aeec8fe2e76 () {
   )
 }
 
-export function Button_46512e4a6570d0aa14a0f71e6767d68f () {
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_click_afcacc0bf09b8789a015e9a61b09b8de = useCallback((_e) => addEvents([Event("_redirect", {path:`/home`,external:false})], (_e), {}), [addEvents, Event])
-
-  return (
-    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_afcacc0bf09b8789a015e9a61b09b8de}>
-  {`Frontpage`}
-</RadixThemesButton>
-  )
-}
-
-export function Root_c2461766d075c6b8b9520237a37c56cb () {
-  
-    const handleSubmit_991db16c444f181835635fdf88b2abf9 = useCallback((ev) => {
-        const $form = ev.target
-        ev.preventDefault()
-        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...{}}
-
-        addEvents([Event("state.dynamic_form_state.add_field", {form_data:form_data})])
-
-        if (true) {
-            $form.reset()
-        }
-    })
-    
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-  return (
-    <RadixFormRoot className={`Root`} onSubmit={handleSubmit_991db16c444f181835635fdf88b2abf9}>
-  <RadixThemesFlex align={`start`} direction={`row`} gap={`2`}>
-  <RadixThemesTextField.Input name={`new_field`} placeholder={`New Field`}/>
-  <RadixThemesButton type={`submit`}>
-  {`+`}
-</RadixThemesButton>
-</RadixThemesFlex>
-</RadixFormRoot>
-  )
-}
-
-export function Root_4d81958dd6f295f15e727dfd77a51454 () {
-  
-    const handleSubmit_55e1624615f7613f4f2b768e2106d8bf = useCallback((ev) => {
-        const $form = ev.target
-        ev.preventDefault()
-        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...{}}
-
-        addEvents([Event("state.dynamic_form_state.handle_submit", {form_data:form_data})])
-
-        if (true) {
-            $form.reset()
-        }
-    })
-    
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-  return (
-    <RadixFormRoot className={`Root`} onSubmit={handleSubmit_55e1624615f7613f4f2b768e2106d8bf}>
-  <Flex_0b82d784f96d219da4c312792f81ab4f/>
-</RadixFormRoot>
-  )
-}
-
-export function Button_3ee5e4ea8589a9c943009e7404eb53be () {
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_click_2fd35f581ac6d709ce2966c88c7c5818 = useCallback((_e) => addEvents([Event("_redirect", {path:`/login`,external:false})], (_e), {}), [addEvents, Event])
-
-  return (
-    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_2fd35f581ac6d709ce2966c88c7c5818}>
-  {`Login`}
-</RadixThemesButton>
-  )
-}
-
 export function Fragment_ac0b06893fc1b15016f3e0532508036d () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
+
 
 
   return (
@@ -197,22 +187,13 @@ export function Button_89f5528bc8ce3b71e3908f3b2100bd35 () {
 
   const on_click_0efd6f4d7da6130e9bdf25921161eece = useCallback((_e) => addEvents([Event("_redirect", {path:`/tournaments`,external:false})], (_e), {}), [addEvents, Event])
 
+
   return (
     <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_0efd6f4d7da6130e9bdf25921161eece}>
   {`View all tournaments`}
 </RadixThemesButton>
   )
 }
-
-const pulse = keyframes`
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-`
-
 
 export default function Component() {
 
@@ -225,8 +206,7 @@ export default function Component() {
   <Fragment_ac0b06893fc1b15016f3e0532508036d/>
 </Fragment>
   <RadixThemesFlex align={`start`} css={{"paddingTop": "10%"}} direction={`column`} gap={`2`}>
-  <Root_4d81958dd6f295f15e727dfd77a51454/>
-  <Root_c2461766d075c6b8b9520237a37c56cb/>
+  <Root_366507b1203ed8dab534fc1bd258bafc/>
   <RadixThemesSeparator size={`4`}/>
   <RadixThemesHeading>
   {`Results`}
@@ -247,9 +227,8 @@ export default function Component() {
 </RadixThemesFlex>
   <NextHead>
   <title>
-  {`Reflex App`}
+  {`Turnering System | New Tournament`}
 </title>
-  <meta content={`A Reflex app.`} name={`description`}/>
   <meta content={`favicon.ico`} property={`og:image`}/>
 </NextHead>
 </Fragment>
