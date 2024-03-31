@@ -12,15 +12,15 @@ import NextHead from "next/head"
 
 
 
-export function Button_2d7913e82e1ffb5e7e8eca7e779994fc () {
+export function Button_46512e4a6570d0aa14a0f71e6767d68f () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
-  const on_click_2d7ba5ec9d6c37a8649083c9ea463caa = useCallback((_e) => addEvents([Event("_redirect", {path:`/new_tournament`,external:false})], (_e), {}), [addEvents, Event])
+  const on_click_afcacc0bf09b8789a015e9a61b09b8de = useCallback((_e) => addEvents([Event("_redirect", {path:`/home`,external:false})], (_e), {}), [addEvents, Event])
 
 
   return (
-    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_2d7ba5ec9d6c37a8649083c9ea463caa}>
-  {`New tournament`}
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_afcacc0bf09b8789a015e9a61b09b8de}>
+  {`Frontpage`}
 </RadixThemesButton>
   )
 }
@@ -38,47 +38,16 @@ export function Button_2fb1f78428e510d85deeae241bf0a449 () {
   )
 }
 
-export function Button_46512e4a6570d0aa14a0f71e6767d68f () {
+export function Button_2d7913e82e1ffb5e7e8eca7e779994fc () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
-  const on_click_afcacc0bf09b8789a015e9a61b09b8de = useCallback((_e) => addEvents([Event("_redirect", {path:`/home`,external:false})], (_e), {}), [addEvents, Event])
+  const on_click_2d7ba5ec9d6c37a8649083c9ea463caa = useCallback((_e) => addEvents([Event("_redirect", {path:`/new_tournament`,external:false})], (_e), {}), [addEvents, Event])
 
 
   return (
-    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_afcacc0bf09b8789a015e9a61b09b8de}>
-  {`Frontpage`}
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_2d7ba5ec9d6c37a8649083c9ea463caa}>
+  {`New tournament`}
 </RadixThemesButton>
-  )
-}
-
-const pulse = keyframes`
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-`
-
-
-export function Fragment_e9a05c105aa9215aeba52aeec8fe2e76 () {
-  const state = useContext(StateContexts.state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-
-  return (
-    <Fragment>
-  {isTrue(((!state.is_hydrated) || (connectErrors.length > 0))) ? (
-  <Fragment>
-  <LucideWifiOffIcon css={{"color": "crimson", "zIndex": 9999, "position": "fixed", "bottom": "30px", "right": "30px", "animation": `${pulse} 1s infinite`}} size={32}>
-  {`wifi_off`}
-</LucideWifiOffIcon>
-</Fragment>
-) : (
-  <Fragment/>
-)}
-</Fragment>
   )
 }
 
@@ -94,6 +63,29 @@ export function Button_89f5528bc8ce3b71e3908f3b2100bd35 () {
 </RadixThemesButton>
   )
 }
+
+export function Button_3ee5e4ea8589a9c943009e7404eb53be () {
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_2fd35f581ac6d709ce2966c88c7c5818 = useCallback((_e) => addEvents([Event("_redirect", {path:`/login`,external:false})], (_e), {}), [addEvents, Event])
+
+
+  return (
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_2fd35f581ac6d709ce2966c88c7c5818}>
+  {`Login`}
+</RadixThemesButton>
+  )
+}
+
+const pulse = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+`
+
 
 export function Fragment_ac0b06893fc1b15016f3e0532508036d () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
@@ -125,16 +117,24 @@ export function Fragment_ac0b06893fc1b15016f3e0532508036d () {
   )
 }
 
-export function Button_3ee5e4ea8589a9c943009e7404eb53be () {
+export function Fragment_966c0378eb9d65bdfb5286644be9b831 () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
+  const state = useContext(StateContexts.state)
 
-  const on_click_2fd35f581ac6d709ce2966c88c7c5818 = useCallback((_e) => addEvents([Event("_redirect", {path:`/login`,external:false})], (_e), {}), [addEvents, Event])
 
 
   return (
-    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_2fd35f581ac6d709ce2966c88c7c5818}>
-  {`Login`}
-</RadixThemesButton>
+    <Fragment>
+  {isTrue(((!state.is_hydrated) || (connectErrors.length > 0))) ? (
+  <Fragment>
+  <LucideWifiOffIcon css={{"color": "crimson", "zIndex": 9999, "position": "fixed", "bottom": "30px", "right": "30px", "animation": `${pulse} 1s infinite`}} size={32}>
+  {`wifi_off`}
+</LucideWifiOffIcon>
+</Fragment>
+) : (
+  <Fragment/>
+)}
+</Fragment>
   )
 }
 
@@ -144,7 +144,7 @@ export default function Component() {
     <Fragment>
   <Fragment>
   <div css={{"position": "fixed", "width": "100vw", "height": "0"}}>
-  <Fragment_e9a05c105aa9215aeba52aeec8fe2e76/>
+  <Fragment_966c0378eb9d65bdfb5286644be9b831/>
 </div>
   <Fragment_ac0b06893fc1b15016f3e0532508036d/>
 </Fragment>

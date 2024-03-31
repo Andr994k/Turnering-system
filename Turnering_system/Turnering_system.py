@@ -1,11 +1,10 @@
 from rxconfig import config
 import reflex as rx
 
-tournamenttitles: list[str] = []
-tournamentdescriptions: list[str] = []
+endpoint_list = []
 
 class DynamicFormState(rx.State):
-    form_data: dict = {}
+    form_data: list[dict] = []
     form_fields: list[str] = ["Title", "Description"]
     tournament_count: int = 1
 
@@ -14,14 +13,15 @@ class DynamicFormState(rx.State):
         return [" ".join(w.capitalize() for w in field.split("_")) for field in self.form_fields]
 
     def handle_submit(self, form_data: dict):
-        self.form_data[f"Tournament {self.tournament_count}"] = form_data
-        self.tournament_count += 1
+        #self.form_data[f"Tournament {self.tournament_count}"] = form_data
+        self.form_data.append(form_data)
+        endpoint_list.append(convert_to_endpoint(form_data["Title"]))
+        add_tournament_endpoints()
+
 
 def convert_to_endpoint(titletoconvert: str) -> str:
-    endpoint: str = titletoconvert
-    endpoint = endpoint.replace("#", "")
-    endpoint = endpoint.replace("'", "")
-    endpoint = endpoint.replace(" ", "_")
+    endpoint = ''.join(letter for letter in titletoconvert if letter.isalnum())
+    print(endpoint)
     return endpoint
 
 #Componennts class
@@ -31,16 +31,17 @@ class Components():
 
     def navbutton(text, reference) -> rx.Component:
         return rx.button(text, margin_right="1em", on_click=rx.redirect(reference))
-    def tournament_box(name: str, description: str) -> rx.Component:
-        print(name, description)
+    def tournament_box(data: list, index: int) -> rx.Component:
+        #print(data[0])
         return rx.box(
             rx.vstack(
-                rx.heading(name),
-                rx.text(description),
+                rx.heading(DynamicFormState.form_data[index]["Title"]),
+                rx.text(DynamicFormState.form_data[index]["Description"]),
                 rx.button("View tournament", on_click=rx.redirect("/tournaments/" + "tournament_1")),
-                padding_top="10%"
+                padding_top="10%"   
             )
         )
+        
 
 #Navigation buttons
 navbuttons = {
@@ -68,26 +69,20 @@ def home() -> rx.Component:
     navbar()
     )
 
-"""def add_tournament_endpoints():
-    for key, value in tournamenttitles, tournamentdescriptions:
-        endpoint = key.replace("#", "")
-        endpoint = endpoint.replace("'", "")
-        endpoint = endpoint.replace(" ", "_")
-        print(endpoint)
-        app.add_page(tournament_layout(key, value), route=f"tournaments/{endpoint}")"""
-def make_tournament_box():
-    if rx.cond(DynamicFormState.form_data):
-        rx.foreach(DynamicFormState.form_data, lambda title, description: Components.tournament_box(title, description))
+def add_tournament_endpoints():
+    for key in endpoint_list:
+        app.add_page(rx.text("Test"), route=f"tournaments/{key}")
+        
 
 def view_all_tournaments() -> rx.Component:
-    print("????????????")
+    
     return rx.vstack(
         rx.heading("All tournaments", style={"font_size": "4em"}),
-        make_tournament_box(),
+        rx.foreach(DynamicFormState.form_data, Components.tournament_box),
         navbar(),
-        rx.text(DynamicFormState.form_data.to_string()),
         padding_top="10%"
     )
+    
 
 #:((((((((((((((((
 
@@ -126,10 +121,9 @@ def navbar():
         top="0px",
         z_index="5",
 )
-
 # Add State and page to the app.
 app = rx.App()
 app.add_page(home)
 app.add_page(view_all_tournaments, route="tournaments")
 app.add_page(add_tournament, route="new_tournament")
-#add_tournament_endpoints()
+print(app.pages.values())
