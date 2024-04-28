@@ -160,25 +160,24 @@ def add_tournament():
     )
 
 def navbar():
-    return rx.center(
-        rx.vstack(
-            rx.heading("Tournament manager"),
-            rx.hstack(
-                *[Components.navbutton(key, value) for key, value in navbuttons.items()],
-                rx.cond(
-                    State.logged_in,    
-                    rx.vstack(
-                        rx.avatar("logo.png"),
-                        rx.button("Logout", on_click=State.logout),
-                    ),
-                    rx.text("Not logged in"),
-                )),
-            bg="#E6E6EA",
-            position="fixed",
-            width="100%",
-            top="0px",
-            z_index="5",
-))
+    return rx.vstack(
+        rx.heading("Tournament manager"),
+        rx.hstack(
+            *[Components.navbutton(key, value) for key, value in navbuttons.items()],
+            rx.cond(
+                State.logged_in,    
+                rx.vstack(
+                    rx.avatar("logo.png"),
+                    rx.button("Logout", on_click=State.logout),
+                ),
+                rx.text("Not logged in"),
+            )),
+        bg="#E6E6EA",
+        position="fixed",
+        width="100%",
+        top="0px",
+        z_index="5",
+)
 # Add State and page to the app.
 app = rx.App()
 app.add_page(home)
