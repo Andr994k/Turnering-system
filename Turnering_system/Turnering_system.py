@@ -141,8 +141,8 @@ def add_tournament():
             rx.vstack(
                 rx.foreach(
                     State.form_fields,
-                    lambda field, idx: rx.input(
-                        placeholder=State.form_field_placeholders[idx],
+                    lambda field, index: rx.input(
+                        placeholder=State.form_field_placeholders[index],
                         name=field,
                     ),
                 ),
@@ -151,7 +151,6 @@ def add_tournament():
             on_submit=State.handle_submit,
             reset_on_submit=True,
         ),
-
         rx.divider(),
         rx.heading("Results"),
         rx.text(State.form_data.to_string()),
