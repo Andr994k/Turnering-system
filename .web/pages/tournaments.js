@@ -14,18 +14,49 @@ import NextHead from "next/head"
 
 
 
-export function Button_2fb1f78428e510d85deeae241bf0a449 () {
+export function Button_3ee5e4ea8589a9c943009e7404eb53be () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
-  const on_click_3378da63d1beed448968148435c684ca = useCallback((_e) => addEvents([Event("_redirect", {path:`/signup`,external:false})], (_e), {}), [addEvents, Event])
+  const on_click_2fd35f581ac6d709ce2966c88c7c5818 = useCallback((_e) => addEvents([Event("_redirect", {path:`/login`,external:false})], (_e), {}), [addEvents, Event])
 
 
   return (
-    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_3378da63d1beed448968148435c684ca}>
-  {`Signup`}
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_2fd35f581ac6d709ce2966c88c7c5818}>
+  {`Login`}
 </RadixThemesButton>
   )
 }
+
+export function Fragment_966c0378eb9d65bdfb5286644be9b831 () {
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+  const state = useContext(StateContexts.state)
+
+
+
+  return (
+    <Fragment>
+  {isTrue(((!state.is_hydrated) || (connectErrors.length > 0))) ? (
+  <Fragment>
+  <LucideWifiOffIcon css={{"color": "crimson", "zIndex": 9999, "position": "fixed", "bottom": "30px", "right": "30px", "animation": `${pulse} 1s infinite`}} size={32}>
+  {`wifi_off`}
+</LucideWifiOffIcon>
+</Fragment>
+) : (
+  <Fragment/>
+)}
+</Fragment>
+  )
+}
+
+const pulse = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+`
+
 
 export function Fragment_ac0b06893fc1b15016f3e0532508036d () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
@@ -57,9 +88,9 @@ export function Fragment_ac0b06893fc1b15016f3e0532508036d () {
   )
 }
 
-export function Flex_d804288382c861093cdb6565aba06990 () {
-  const state__state = useContext(StateContexts.state__state)
+export function Flex_66f348116b412e6cae725db983a793b8 () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
+  const state__state = useContext(StateContexts.state__state)
 
 
 
@@ -93,22 +124,22 @@ export function Flex_d804288382c861093cdb6565aba06990 () {
   <Button_89f5528bc8ce3b71e3908f3b2100bd35/>
   <Button_2fb1f78428e510d85deeae241bf0a449/>
   <Button_3ee5e4ea8589a9c943009e7404eb53be/>
-  <Fragment_8d89687dc01d2e6be25e99bd3196727c/>
+  <Fragment_183c11115bdefa38fda2bc611a5b4447/>
 </RadixThemesFlex>
 </RadixThemesFlex>
 </RadixThemesFlex>
   )
 }
 
-export function Button_89f5528bc8ce3b71e3908f3b2100bd35 () {
+export function Button_2fb1f78428e510d85deeae241bf0a449 () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
-  const on_click_0efd6f4d7da6130e9bdf25921161eece = useCallback((_e) => addEvents([Event("_redirect", {path:`/tournaments`,external:false})], (_e), {}), [addEvents, Event])
+  const on_click_3378da63d1beed448968148435c684ca = useCallback((_e) => addEvents([Event("_redirect", {path:`/signup`,external:false})], (_e), {}), [addEvents, Event])
 
 
   return (
-    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_0efd6f4d7da6130e9bdf25921161eece}>
-  {`View all tournaments`}
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_3378da63d1beed448968148435c684ca}>
+  {`Signup`}
 </RadixThemesButton>
   )
 }
@@ -139,40 +170,9 @@ export function Button_2d7913e82e1ffb5e7e8eca7e779994fc () {
   )
 }
 
-export function Fragment_e9a05c105aa9215aeba52aeec8fe2e76 () {
-  const state = useContext(StateContexts.state)
+export function Fragment_183c11115bdefa38fda2bc611a5b4447 () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-
-  return (
-    <Fragment>
-  {isTrue(((!state.is_hydrated) || (connectErrors.length > 0))) ? (
-  <Fragment>
-  <LucideWifiOffIcon css={{"color": "crimson", "zIndex": 9999, "position": "fixed", "bottom": "30px", "right": "30px", "animation": `${pulse} 1s infinite`}} size={32}>
-  {`wifi_off`}
-</LucideWifiOffIcon>
-</Fragment>
-) : (
-  <Fragment/>
-)}
-</Fragment>
-  )
-}
-
-const pulse = keyframes`
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-`
-
-
-export function Fragment_8d89687dc01d2e6be25e99bd3196727c () {
   const state__state = useContext(StateContexts.state__state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
 
 
 
@@ -184,7 +184,7 @@ export function Fragment_8d89687dc01d2e6be25e99bd3196727c () {
   <RadixThemesAvatar>
   {`logo.png`}
 </RadixThemesAvatar>
-  <RadixThemesButton onClick={(_e) => addEvents([Event("state.state.logout", {})], (_e), {})}>
+  <RadixThemesButton onClick={(_e) => addEvents([Event("state.state.handle_logout", {})], (_e), {})}>
   {`Logout`}
 </RadixThemesButton>
 </RadixThemesFlex>
@@ -200,15 +200,15 @@ export function Fragment_8d89687dc01d2e6be25e99bd3196727c () {
   )
 }
 
-export function Button_3ee5e4ea8589a9c943009e7404eb53be () {
+export function Button_89f5528bc8ce3b71e3908f3b2100bd35 () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
-  const on_click_2fd35f581ac6d709ce2966c88c7c5818 = useCallback((_e) => addEvents([Event("_redirect", {path:`/login`,external:false})], (_e), {}), [addEvents, Event])
+  const on_click_0efd6f4d7da6130e9bdf25921161eece = useCallback((_e) => addEvents([Event("_redirect", {path:`/tournaments`,external:false})], (_e), {}), [addEvents, Event])
 
 
   return (
-    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_2fd35f581ac6d709ce2966c88c7c5818}>
-  {`Login`}
+    <RadixThemesButton css={{"marginRight": "1em"}} onClick={on_click_0efd6f4d7da6130e9bdf25921161eece}>
+  {`View all tournaments`}
 </RadixThemesButton>
   )
 }
@@ -219,11 +219,11 @@ export default function Component() {
     <Fragment>
   <Fragment>
   <div css={{"position": "fixed", "width": "100vw", "height": "0"}}>
-  <Fragment_e9a05c105aa9215aeba52aeec8fe2e76/>
+  <Fragment_966c0378eb9d65bdfb5286644be9b831/>
 </div>
   <Fragment_ac0b06893fc1b15016f3e0532508036d/>
 </Fragment>
-  <Flex_d804288382c861093cdb6565aba06990/>
+  <Flex_66f348116b412e6cae725db983a793b8/>
   <NextHead>
   <title>
   {`Turnering System | Tournaments`}

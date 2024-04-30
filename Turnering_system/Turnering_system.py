@@ -1,22 +1,19 @@
 import reflex as rx
 
 endpoint_list = []
-
-
 current_user = None
 
 class State(rx.State):
     form_data: list[dict] = []
     form_fields: list[str] = ["Title", "Description"]
-    tournament_count: int = 1
-
     logged_in = False
-
     users: dict[str, str] = {}
 
     @rx.cached_var
     def form_field_placeholders(self) -> list[str]:
-        return [" ".join(w.capitalize() for w in field.split("_")) for field in self.form_fields]
+        test = [" ".join(w.capitalize() for w in field.split("_")) for field in self.form_fields]
+        print(test)
+        return test
 
     def handle_submit(self, form_data: dict):
         self.form_data.append(form_data)
@@ -35,13 +32,11 @@ class State(rx.State):
             current_user = form_data["username"]
         else:
             print("Wrong username or password")
-    def logout(self):
+    def handle_logout(self):
         self.logged_in = False
         global current_user
         current_user = None
         print("Logged out")
-        
-
 
 def convert_to_endpoint(titletoconvert: str) -> str:
     endpoint = ''.join(letter for letter in titletoconvert if letter.isalnum())
@@ -49,9 +44,7 @@ def convert_to_endpoint(titletoconvert: str) -> str:
 
 #Componennts class
 class Components():
-
     #Collection of various graphical elements
-
     def navbutton(text, reference) -> rx.Component:
         return rx.button(text, margin_right="1em", on_click=rx.redirect(reference))
     def tournament_box(data: list, index: int) -> rx.Component:
@@ -64,7 +57,6 @@ class Components():
             )
         )
         
-
 #Navigation buttons
 navbuttons = {
     "Frontpage": "/home",
@@ -104,7 +96,6 @@ def view_all_tournaments() -> rx.Component:
         navbar(),
         padding_top="10%"
     )
-    
 
 def sign_up() -> rx.Component:
     return rx.vstack(
@@ -151,9 +142,6 @@ def add_tournament():
             on_submit=State.handle_submit,
             reset_on_submit=True,
         ),
-        rx.divider(),
-        rx.heading("Results"),
-        rx.text(State.form_data.to_string()),
         navbar(),
         padding_top="10%"
     )
@@ -167,7 +155,7 @@ def navbar():
                 State.logged_in,    
                 rx.vstack(
                     rx.avatar("logo.png"),
-                    rx.button("Logout", on_click=State.logout),
+                    rx.button("Logout", on_click=State.handle_logout),
                 ),
                 rx.text("Not logged in"),
             )),
