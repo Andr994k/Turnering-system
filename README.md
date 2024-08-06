@@ -1,2 +1,2 @@
-# Turnering-system
-Et hjemmeside-turneringssystem ved brug af python og reflex
+# Tournament system
+A website for managing tournaments made in [Reflex](https://reflex.dev/)
